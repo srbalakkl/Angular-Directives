@@ -1,3 +1,9 @@
+<!--Note:NgContainer,NgTemplate,NgTemplateOutlet is not an angular directive
+It is just a style element-->
+
+<!--todo:Change the repo name & proj name -->
+
+
 <!-- ************** ng-template Directive ************* -->
 <h2>ng-template</h2>
 <div *ngIf="title=='Angular-Directives';else loading">
@@ -17,7 +23,7 @@
 <h2>ng-container</h2>
 <ng-container *ngIf="title=='Angular-Directives'">
 
-  <p>The majot reason we are using ng-container is
+  <p>The major reason we are using ng-container is
     It will not behave as separate div or any element.
     So we don't have to bother about css style rendering issues.
   </p>
@@ -69,3 +75,9 @@
 </ng-template>
 
 <!--**********-->
+
+<!--**Example for custom directive***-->
+
+<p appCustomAttribute>Example for custom attribute directive</p>
+
+<appCustomElement>Example for custom element directive</appCustomElement>

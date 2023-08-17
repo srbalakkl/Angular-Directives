@@ -7,11 +7,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {ChildComponent} from './child/child.component';
 import {MatButtonModule} from "@angular/material/button";
+import {CustomAttributeDirective} from './custom_directive/custom-attribute.directive';
+import {CustomElementDirective} from './custom_directive/custom-element.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChildComponent
+    ChildComponent,
+    CustomAttributeDirective,
+    CustomElementDirective
   ],
   imports: [
     BrowserModule,
