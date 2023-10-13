@@ -10,7 +10,7 @@ export class AppComponent {
 
   ary: any = ['asdf', 1, 'sdf'];
 
-  article: { id: number, name: string }[] = [
+  myArticle: { id: number, name: string }[] = [
     {"id": 0, "name": "Available"},
     {"id": 1, "name": "Ready"},
     {"id": 2, "name": "Started"}
