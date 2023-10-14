@@ -7,6 +7,10 @@ It is just a style element-->
 <!-- ************** ng-template Directive ************* -->
 <h2>ng-template</h2>
 <div *ngIf="title=='Angular-Directives';else loading">
+  <p>Angular's <em>ng-template</em> element is used to defines a template that is not rendered by default.</p>
+
+  <br>
+
   <p> define template content that is only being rendered by Angular when you, <br>
     whether directly or indirectly, specifically instruct it to do so, <br>
     allowing you to have full control over how and when the content is displayed.</p>
@@ -22,6 +26,7 @@ It is just a style element-->
 <!--********** ng-container ***********-->
 <h2>ng-container</h2>
 <ng-container *ngIf="title=='Angular-Directives'">
+  <p>Def: <em>ng-container</em> is a special element that can hold structural directives </p>
 
   <p>The major reason we are using ng-container is
     It will not behave as separate div or any element.
@@ -35,15 +40,51 @@ It is just a style element-->
 <!--***********-->
 
 <!--******* ng-content ******-->
-<h2>ng-content</h2>
+<h1>ng-content</h1>
+<p>The ng-content is used for the content projection <br> The content projection can be categorised into 3 types</p>
+<ul>
+  <li>Single-slot content projection</li>
+  <li>Multi-slot content projection</li>
+  <li>Conditional content projection (template outlet)</li>
+</ul>
+
+<p>The ng-content element specifies where to project content inside a component template.</p>
+<br>
+<p>Note:The <em>ng-content</em> element is a placeholder that does not create a real DOM element. Custom attributes
+  applied to <em>ng-content</em> are ignored.</p>
 <ol>
   <li>Use ng-content when you want to pass some markup (ie HTML tag) inside your child component from the parent</li>
   <li><b>Only works with child component.</b> <em>So look at child component 😁 </em></li>
   <li>use this when you want markup from the parent.</li>
 </ol>
+
+
+<div class="alert is-helpful">
+  <p>The <code style="color: blue">&lt;ng-content&gt;</code> element is a placeholder
+    that does not create a real DOM element.
+    Custom attributes applied to<code style="color: blue">&lt;ng-content&gt;</code>
+    are ignored.</p>
+</div>
+
+
+<h3>Single-slot content projection</h3>
+<p>The most basic form of content projection is single-slot content projection. br
+  Single-slot content projection refers to creating a component into which you can project one component.</p>
 <app-child>
-  <div><p>Title is {{title}}</p></div>
+  <div><b>Title is {{title}}by {{checkVal}} <- for single slot content projection.</b></div>
 </app-child>
+
+
+<br>
+
+
+<h3>Multi-slot content projection</h3>
+<app-child>
+  <div multiSlotContent><b>Title is {{title}}by {{checkVal}}LALALAA<- for multi slot content projection.</b></div>
+</app-child>
+
+<p>If your component includes an ng-content element without a select attribute, that instance receives all projected
+  components that do not match any of the other ng-content elements.</p>
 
 <button [routerLink]="['/child']" mat-raised-button type="button">
   Go to child
@@ -63,25 +104,23 @@ It is just a style element-->
 <ng-container *ngTemplateOutlet="loading"></ng-container>
 
 
-<h4>ngTemplateOutlet with Property Value</h4>
+<h4>ngTemplateOutlet with Context/Property Value</h4>
 <ol>
   <li>Property can be added by using <em>Semicolon(;)</em> and the <em>context:</em>Keyword.</li>
   <li>The let-(- is necessary)article is used to read property value</li>
 </ol>
 
-<!--todo: check the https://www.tektutorialshub.com/angular/ngtemplateoutlet-in-angular/ to make the below code to work-->
-<ng-template #loadingWithProperty let-myArticle="myArticle">
-  article name:  {{myArticle.name}}
-  <mat-spinner></mat-spinner>
-  loading...
-</ng-template>
+<ng-container *ngTemplateOutlet="eng; context: myContext"></ng-container>
+<hr>
+<ng-container *ngTemplateOutlet="svk; context: myContext"></ng-container>
+<hr>
 
-<h6>The Value received from the #loadingWithProperty is </h6>
-<ng-container *ngTemplateOutlet="loadingWithProperty; context:{myArticle}"></ng-container>
 
-<!--**********-->
+<ng-template #eng let-name><span>Hello {{name}}!</span></ng-template>
+<ng-template #svk let-person="localSk"><span>Ahoj {{person}}!</span></ng-template>
 
-<!--**Example for custom directive***-->
+
+<!--********* Example for custom directive ************-->
 
 <p appCustomAttribute>Example for custom attribute directive</p>
 
