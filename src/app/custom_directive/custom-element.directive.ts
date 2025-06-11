@@ -9,7 +9,7 @@ export class CustomElementDirective implements OnInit {
   }
 
   ngOnInit() {
-    (this.element.nativeElement as HTMLElement).style.backgroundColor = "blue"
+    (this.element.nativeElement as HTMLElement).style.backgroundColor = "blue";
   }
 
 }

@@ -7,13 +7,11 @@ It is just a style element-->
 <!-- ************** ng-template Directive ************* -->
 <h2>ng-template</h2>
 <div *ngIf="title=='Angular-Directives';else loading">
-  <p>Angular's <em>ng-template</em> element is used to defines a template that is not rendered by default.</p>
-
-  <br>
-
-  <p> define template content that is only being rendered by Angular when you, <br>
+  <p> Angular is only rendering the template content when you, <br>
     whether directly or indirectly, specifically instruct it to do so, <br>
-    allowing you to have full control over how and when the content is displayed.</p>
+    this allowing you to have full control over how and when the content is displayed.</p>
+  <p>Note:The <em>ng-template</em> content can also be rendered by <em>ng-template-outlet</em> instead of control flow
+    statement condition.</p>
 </div>
 
 <ng-template #loading>
@@ -29,13 +27,15 @@ It is just a style element-->
   <p>Def: <em>ng-container</em> is a special element that can hold structural directives </p>
 
   <p>The major reason we are using ng-container is
-    It will not behave as separate div or any element.
-    So we don't have to bother about css style rendering issues.
+    It will not behave as a separate div or any element.
+    So we don't have to bother about CSS style rendering issues.
   </p>
 
-  <div *ngFor="let a of ary">
-    <p>Array value inside the Div element is {{a}}</p>
-  </div>
+  <ol>
+    <div *ngFor="let a of ary">
+      <li>Array value inside the Div element is {{ a }}</li>
+    </div>
+  </ol>
 </ng-container>
 <!--***********-->
 
@@ -53,8 +53,8 @@ It is just a style element-->
 <p>Note:The <em>ng-content</em> element is a placeholder that does not create a real DOM element. Custom attributes
   applied to <em>ng-content</em> are ignored.</p>
 <ol>
-  <li>Use ng-content when you want to pass some markup (ie HTML tag) inside your child component from the parent</li>
-  <li><b>Only works with child component.</b> <em>So look at child component 😁 </em></li>
+  <li>Use ng-content when you want to pass some markup (i.e., HTML tag) inside your child component from the parent</li>
+  <li><b>Only works with a child component.</b> <em>So look at a child component 😁 </em></li>
   <li>use this when you want markup from the parent.</li>
 </ol>
 
@@ -96,25 +96,32 @@ It is just a style element-->
 <ol>
   <li>ngTemplateOutlet is a <b>structural directive</b>.</li>
   <li>Used to insert a template (created by ngTemplate) in various sections of our DOM.</li>
-  <li>The template does not render itself. We must use a structural directive to render it. That is what <em>ngTemplateOutlet</em> does.</li>
-  <li>This is the proper way to render an html in angular template without using *ngFor directive</li>
-  <li></li>
+  <li>The template does not render itself. We must use a structural directive to render it. That is what <em>ngTemplateOutlet</em>
+    does.
+  </li>
+  <li>This is the proper way to render an HTML in an angular template without using *ngFor directive</li>
 </ol>
 
 <ng-container *ngTemplateOutlet="loading"></ng-container>
 
 
-<h4>ngTemplateOutlet with Context/Property Value</h4>
+<h2>ngTemplateOutlet with Context/Property Value</h2>
 <ol>
   <li>Property can be added by using <em>Semicolon(;)</em> and the <em>context:</em>Keyword.</li>
-  <li>The let-(- is necessary)article is used to read property value</li>
+  <li>The let-(- is necessary) article is used to read property value</li>
 </ol>
 
+<!--todo: check the https://www.tektutorialshub.com/angular/ngtemplateoutlet-in-angular to make the below code to work-->
+<ng-template #loadingWithProperty let-myArticle="myArticle">
+  article name:  {{ myArticle.name }}
+</ng-template>
 <ng-container *ngTemplateOutlet="eng; context: myContext"></ng-container>
 <hr>
 <ng-container *ngTemplateOutlet="svk; context: myContext"></ng-container>
 <hr>
 
+<h3>The Value received from the #loadingWithProperty is </h3>
+<ng-container *ngTemplateOutlet="loadingWithProperty; context:{myArticle}"></ng-container>
 
 <ng-template #eng let-name><span>Hello {{name}}!</span></ng-template>
 <ng-template #svk let-person="localSk"><span>Ahoj {{person}}!</span></ng-template>
@@ -122,6 +129,8 @@ It is just a style element-->
 
 <!--********* Example for custom directive ************-->
 
+<h2>Example for Attribute Directive</h2>
 <p appCustomAttribute>Example for custom attribute directive</p>
 
+<h2>Example for Element Directive</h2>
 <appCustomElement>Example for custom element directive</appCustomElement>

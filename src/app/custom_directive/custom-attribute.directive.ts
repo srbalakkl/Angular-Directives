@@ -1,7 +1,7 @@
 import {Directive, ElementRef, OnInit} from '@angular/core';
 
 @Directive({
-  selector: '[appCustomAttribute]'
+  selector: '[appCustomAttribute]'//<- Here the [] denoting it is an attribute directive, otherwise it will become an element directive.
 })
 export class CustomAttributeDirective implements OnInit {
 
