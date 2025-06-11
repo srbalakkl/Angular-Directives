@@ -71,7 +71,7 @@ It is just a style element-->
 <p>The most basic form of content projection is single-slot content projection. br
   Single-slot content projection refers to creating a component into which you can project one component.</p>
 <app-child>
-  <div><b>Title is {{title}}by {{checkVal}} <- for single slot content projection.</b></div>
+  <div><b>Title is {{ title }}by {{ checkVal }} <- for single slot content projection.</b></div>
 </app-child>
 
 
@@ -80,7 +80,7 @@ It is just a style element-->
 
 <h3>Multi-slot content projection</h3>
 <app-child>
-  <div multiSlotContent><b>Title is {{title}}by {{checkVal}}LALALAA<- for multi slot content projection.</b></div>
+  <div multiSlotContent><b>Title is {{ title }}by {{ checkVal }}LALALAA<- for multi slot content projection.</b></div>
 </app-child>
 
 <p>If your component includes an ng-content element without a select attribute, that instance receives all projected
@@ -92,40 +92,57 @@ It is just a style element-->
 <!--********-->
 
 <!--*******ngTemplateOutlet*******-->
-<h2>ngTemplateOutlet</h2>
-<ol>
-  <li>ngTemplateOutlet is a <b>structural directive</b>.</li>
-  <li>Used to insert a template (created by ngTemplate) in various sections of our DOM.</li>
-  <li>The template does not render itself. We must use a structural directive to render it. That is what <em>ngTemplateOutlet</em>
-    does.
-  </li>
-  <li>This is the proper way to render an HTML in an angular template without using *ngFor directive</li>
-</ol>
+<div style="border:3px solid blue">
+  <h2>ngTemplateOutlet</h2>
+  <ol>
+    <li>ngTemplateOutlet is a <b>structural directive</b>.</li>
+    <li>Used to insert a template (created by ngTemplate) in various sections of our DOM.</li>
+    <li>The template does not render itself. We must use a structural directive to render it. That is what <em>ngTemplateOutlet</em>
+      does.
+    </li>
+    <li>This is the proper way to render an HTML in an angular template without using *ngFor directive</li>
+  </ol>
 
-<ng-container *ngTemplateOutlet="loading"></ng-container>
+  <ng-container *ngTemplateOutlet="loading"></ng-container>
 
 
-<h2>ngTemplateOutlet with Context/Property Value</h2>
-<ol>
-  <li>Property can be added by using <em>Semicolon(;)</em> and the <em>context:</em>Keyword.</li>
-  <li>The let-(- is necessary) article is used to read property value</li>
-</ol>
+  <h2>ngTemplateOutlet with Context/Property Value</h2>
+  <ol>
+    <li>Property can be added by using <em>Semicolon(;)</em> and the <em>context:</em>Keyword.</li>
+    <li>The let-(- is necessary) article is used to read property value</li>
+  </ol>
 
-<!--todo: check the https://www.tektutorialshub.com/angular/ngtemplateoutlet-in-angular to make the below code to work-->
-<ng-template #loadingWithProperty let-myArticle="myArticle">
-  article name:  {{ myArticle.name }}
-</ng-template>
-<ng-container *ngTemplateOutlet="eng; context: myContext"></ng-container>
-<hr>
-<ng-container *ngTemplateOutlet="svk; context: myContext"></ng-container>
-<hr>
+  <!--todo: check the https://www.tektutorialshub.com/angular/ngtemplateoutlet-in-angular to make the below code to work-->
+  <ng-template #loadingWithProperty let-myArticle="myArticle">
+    article name:  {{ myArticle[0].name }}
+    <hr>
+  </ng-template>
 
-<h3>The Value received from the #loadingWithProperty is </h3>
-<ng-container *ngTemplateOutlet="loadingWithProperty; context:{myArticle}"></ng-container>
 
-<ng-template #eng let-name><span>Hello {{name}}!</span></ng-template>
-<ng-template #svk let-person="localSk"><span>Ahoj {{person}}!</span></ng-template>
+  <h3>The Value received from the #loadingWithProperty is </h3>
+  <ng-container *ngTemplateOutlet="loadingWithProperty; context:{myArticle}"></ng-container>
 
+
+  <ng-template #eng let-name>
+    <div>
+      <span>Hello {{ name }}!</span>
+    </div>
+  </ng-template>
+
+  <!-- Here, the localSk is the key name oif myContext object.-->
+  <ng-template #svk let-person="localSk">
+    <div>
+      <span>Hi. {{ person }}!</span>
+    </div>
+  </ng-template>
+
+  <ng-container *ngTemplateOutlet="eng; context: myContext"></ng-container>
+  <hr>
+  <ng-container *ngTemplateOutlet="svk; context: myContext"></ng-container>
+  <hr>
+
+
+</div>
 
 <!--********* Example for custom directive ************-->
 
